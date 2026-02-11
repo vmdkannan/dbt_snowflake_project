@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: bronze_products
+    config:
+      +materialized: table
+      +schema: bronze
+  - name: bronze_customers
+    config:
+      +materialized: table
+      +schema: bronze
+  - name: bronze_orders
+    config:
+      +materialized: table
+      +schema: bronze
+  - name: bronze_order_items
+    config:
+      +materialized: table
+      +schema: bronze
+  - name: bronze_payments
+    config:
+      +materialized: table
+      +schema: bronze
