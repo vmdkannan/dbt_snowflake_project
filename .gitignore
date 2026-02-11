@@ -8,3 +8,5 @@ wheels/
 
 # Virtual environments
 .venv
+dbt_snow_project/secrets
+dbt_snow_project/profiles.yml
