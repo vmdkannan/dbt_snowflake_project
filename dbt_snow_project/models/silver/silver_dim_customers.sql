@@ -31,7 +31,7 @@ silver_dim_customers as (
         initcap(trim(city)) as city,
         upper(trim(state)) as state,
         upper(trim(country)) as country,
-        signup_date,
+        signup_date as created_at,
         updated_at
     from deduped_customers
     where rn = 1

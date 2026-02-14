@@ -1,0 +1,84 @@
+version: 2
+
+models:
+  - name: silver_dim_customers
+    description: Dimension table for customers
+    columns:
+      - name: customer_id
+        description: Primary key of customer
+        tests:
+          - not_null
+          - unique
+      - name: email
+        tests:
+          - not_null
+      - name: created_at
+        tests:
+          - not_null
+
+  - name: silver_fact_orders
+    description: Orders fact table
+
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('silver_dim_customers')
+              field: customer_key
+
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ["Pending", "Completed", "Cancelled"]
+
+  - name: silver_dim_products
+    description: "Dimension table for products"
+
+    columns:
+      - name: product_key
+        description: "Surrogate key for product"
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        description: "Natural product ID from source"
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "Product name"
+        tests:
+          - not_null
+
+      - name: category
+        description: "Product category"
+        tests:
+          - not_null
+
+      - name: brand
+        description: "Product brand"
+        tests:
+          - not_null
+
+      - name: price
+        description: "Selling price of product"
+        tests:
+          - not_null
+
+      - name: cost
+        description: "Cost of product"
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "Record creation timestamp"
+        tests:
+          - not_null

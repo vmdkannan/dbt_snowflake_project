@@ -3,6 +3,7 @@ with gold_customer_sales as (
     select
         c.customer_id,
         c.full_name,
+        c.created_at,
         sum(f.total_amount) as total_spent,
         count(distinct f.order_id) as total_orders
     from {{ ref('silver_fact_orders') }} f
@@ -10,8 +11,8 @@ with gold_customer_sales as (
         on f.customer_key = c.customer_key
     group by
         c.customer_id,
-        c.full_name
-
+        c.full_name,
+        created_at
 )
 
 select *

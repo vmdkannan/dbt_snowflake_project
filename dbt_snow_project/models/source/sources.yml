@@ -4,9 +4,55 @@ sources:
   - name: source
     database: PRACTICE_DB
     schema: MYPRAC
+
     tables:
       - name: customers
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+              - unique
+
       - name: products
+        columns:
+          - name: product_id
+            tests:
+              - not_null
+              - unique
+
       - name: orders
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+              - unique
+
+          - name: customer_id
+            tests:
+              - not_null
+
       - name: order_items
+        columns:
+          - name: order_item_id
+            tests:
+              - not_null
+              - unique
+
+          - name: order_id
+            tests:
+              - not_null
+
+          - name: product_id
+            tests:
+              - not_null
+
       - name: payments
+        columns:
+          - name: payment_id
+            tests:
+              - not_null
+              - unique
+
+          - name: order_id
+            tests:
+              - not_null
