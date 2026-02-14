@@ -2,22 +2,52 @@ version: 2
 
 models:
   - name: bronze_products
-    config:
-      +materialized: table
-      +schema: bronze
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+
   - name: bronze_customers
-    config:
-      +materialized: table
-      +schema: bronze
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
   - name: bronze_orders
-    config:
-      +materialized: table
-      +schema: bronze
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        tests:
+          - not_null
+
   - name: bronze_order_items
-    config:
-      +materialized: table
-      +schema: bronze
+    columns:
+      - name: order_item_id
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        tests:
+          - not_null
+
+      - name: product_id
+        tests:
+          - not_null
+
   - name: bronze_payments
-    config:
-      +materialized: table
-      +schema: bronze
+    columns:
+      - name: payment_id
+        tests:
+          - not_null
+          - unique
+
+      - name: order_id
+        tests:
+          - not_null
