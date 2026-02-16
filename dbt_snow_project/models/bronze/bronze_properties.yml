@@ -26,6 +26,10 @@ models:
         tests:
           - not_null
 
+      - name: total_amount
+        tests:
+          - generic_non_negative
+
   - name: bronze_order_items
     columns:
       - name: order_item_id
@@ -51,3 +55,7 @@ models:
       - name: order_id
         tests:
           - not_null
+
+      - name: payment_amount
+        tests:
+          - generic_non_negative
